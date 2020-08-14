@@ -1,15 +1,10 @@
 package by.pvt;
 
-import static org.junit.Assert.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-
-import java.lang.reflect.Method;
-import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-
 import by.pvt.repository.UserRepository;
 import by.pvt.repository.model.User;
 
@@ -48,26 +43,21 @@ public class BootTest {
 
 		User findById = repo.findById(save.getId()).get();
 
-		User findByUserNameOrFirstName = repo.findByLoginOrFirstName("login1", "FirstName1");
+		User findByUserNameOrFirstName = repo.findByLoginOrFirstName("login1", "FirstName1").iterator().next();
 
-		
 		/*
-		Method[] declaredMethods = repo.getClass().getDeclaredMethods();
-		
-		Method ourMethod = null;
-		for (Method m : declaredMethods) {
-			if (m.getName().startsWith("findByLogin")) {
-				ourMethod = m;
-			}
-		}
-		*/
-		//findBy{field1Name}OR{field2nameIn} (String field1Name, List<String> field2name)
-		
-		//SELECT * {entity} FROM {field1Name} = ? OR {field2name} IN ?
-		
-		//ourMethod.getClass();
-		
-		
+		 * Method[] declaredMethods = repo.getClass().getDeclaredMethods();
+		 * 
+		 * Method ourMethod = null; for (Method m : declaredMethods) { if
+		 * (m.getName().startsWith("findByLogin")) { ourMethod = m; } }
+		 */
+		// findBy{field1Name}OR{field2nameIn} (String field1Name, List<String>
+		// field2name)
+
+		// SELECT * {entity} FROM {field1Name} = ? OR {field2name} IN ?
+
+		// ourMethod.getClass();
+
 		assertEquals("FirstName1", findByUserNameOrFirstName.getFirstName());
 	}
 
