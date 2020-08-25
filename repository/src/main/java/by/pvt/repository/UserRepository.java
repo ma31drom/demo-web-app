@@ -15,6 +15,6 @@ public interface UserRepository extends JpaRepository<User, Integer> {
 	@Query("select u from User u where u.login = ?1 or u.firstName = ?2")
 	List<User> findWithQuery(String login, String firstName);
 
-	List<User> findByLogin(String login, Pageable pagable);
-	
+	User findByLogin(String login);
+
 }

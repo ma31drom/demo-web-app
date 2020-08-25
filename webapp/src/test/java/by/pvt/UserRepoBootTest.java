@@ -53,59 +53,6 @@ public class UserRepoBootTest {
 	}
 
 	@Test
-	public void deleteVSdeleteBatchTest() throws InterruptedException {
-
-		List<User> users = new ArrayList<User>();
-
-		users.add(repo.save(getUser("first", "last", "pass2", "log")));
-		users.add(repo.save(getUser("first1", "last", "pass", "log")));
-		users.add(repo.save(getUser("first", "last2", "pass", "log6")));
-		users.add(repo.save(getUser("first1", "last", "pass", "log")));
-		users.add(repo.save(getUser("first", "last2", "pass5", "log")));
-		users.add(repo.save(getUser("first1", "last2", "pass", "log8")));
-		users.add(repo.save(getUser("first", "last", "pass", "log")));
-
-		repo.deleteAll(users);
-
-		List<User> users2 = new ArrayList<User>();
-
-		users2.add(repo.save(getUser("first", "last", "pass2", "log")));
-		users2.add(repo.save(getUser("first1", "last", "pass", "log")));
-		users2.add(repo.save(getUser("first", "last2", "pass", "log6")));
-		users2.add(repo.save(getUser("first1", "last", "pass", "log")));
-		users2.add(repo.save(getUser("first", "last2", "pass5", "log")));
-		users2.add(repo.save(getUser("first1", "last2", "pass", "log8")));
-		users2.add(repo.save(getUser("first", "last", "pass", "log")));
-
-		repo.deleteInBatch(users2);
-	}
-
-	@Test
-	public void pageTest() throws InterruptedException {
-
-		List<User> users = new ArrayList<User>();
-
-		users.add(repo.save(getUser("first3", "last", "pass2", "log")));
-		users.add(repo.save(getUser("first1", "last", "pass", "log")));
-		users.add(repo.save(getUser("first7", "last", "pass", "log")));
-		users.add(repo.save(getUser("first2", "last2", "pass", "log6")));
-		users.add(repo.save(getUser("first8", "last2", "pass5", "log")));
-		users.add(repo.save(getUser("first1", "last2", "pass", "log8")));
-		users.add(repo.save(getUser("first1", "last", "pass", "log")));
-		
-		
-		List<User> findByLogin = repo.findByLogin("log", PageRequest.of(0, 3, Sort.by(Direction.ASC, "firstName")));
-
-		Set<String> vv = findByLogin.stream().map(User::getFirstName).collect(Collectors.toSet());
-		HashSet<String> expected = new HashSet<String>();
-		expected.add("first1");
-		expected.add("first3");
-		assertEquals(expected, vv);
-
-		assertEquals(3, findByLogin.size());
-	}
-
-	@Test
 	public void findByQuery() throws InterruptedException {
 
 		User save = repo.save(getUser("first", "last", "pass2", "log"));

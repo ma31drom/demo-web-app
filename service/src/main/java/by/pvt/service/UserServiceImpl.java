@@ -23,4 +23,9 @@ public class UserServiceImpl extends CrudServiceJpaRepoImpl<User> implements Use
 	public List<User> getByFilter(UserFilter filter) {
 		return repo.findAll(Example.of(MAPPER.convertValue(filter, User.class)));
 	}
+
+	@Override
+	public User getByLogin(String login) {
+		return repo.findByLogin(login);
+	}
 }

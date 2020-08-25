@@ -8,4 +8,6 @@ public interface UserService extends CrudService<User> {
 
 	List<User> getByFilter(UserFilter filter);
 
+	User getByLogin(String login);
+
 }

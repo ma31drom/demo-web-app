@@ -3,6 +3,7 @@ package by.pvt.web;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -14,6 +15,7 @@ import by.pvt.repository.model.User;
 import by.pvt.service.UserService;
 
 @Controller
+@PreAuthorize("ADMIN")
 public class UserHttpController {
 
 	@Autowired
@@ -25,7 +27,6 @@ public class UserHttpController {
 		return "index";
 	}
 
-	
 	@GetMapping("/signup")
 	public String showSignUpForm(User user) {
 		return "add-user";
