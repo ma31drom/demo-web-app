@@ -27,10 +27,11 @@ public class User {
 	private String login;
 	private String password;
 
-	@Length(min = 3, max = 10)
+	private String email;
+	
+	private boolean active;
+	
 	private String firstName;
-
-	@NotBlank
 	private String lastName;
 
 	private Role role;
