@@ -10,4 +10,5 @@ public interface UserService extends CrudService<User> {
 
 	User getByLogin(String login);
 
+	boolean checkLoginPresent(String login);
 }

@@ -28,4 +28,9 @@ public class UserServiceImpl extends CrudServiceJpaRepoImpl<User> implements Use
 	public User getByLogin(String login) {
 		return repo.findByLogin(login);
 	}
+
+	@Override
+	public boolean checkLoginPresent(String login) {
+		return getByLogin(login) != null;
+	}
 }
