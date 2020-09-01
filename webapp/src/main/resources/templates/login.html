@@ -1,41 +1,46 @@
 <!doctype html>
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:th="http://www.thymeleaf.org">
-<head>
-<!-- Required meta tags -->
-<meta charset="utf-8">
+<th:block th:insert="fragments/header.html :: head" />
 
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-<link href="webjars/bootstrap/4.0.0/css/bootstrap.min.css"
-	rel="stylesheet" />
-<script src="webjars/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-<script src="webjars/jquery/3.0.0/jquery.min.js"></script>
-<title>Hello, User!</title>
-
-</head>
 <body>
-	<h1>Hello, User!</h1>
-	<div class="container">
+
+	<th:block th:insert="fragments/navBar.html :: navbar" />
+
+	<div class="container mt-3">
 		<form th:action="@{/login}" method="post">
-			<div class="form-row">
-				<div class="form-group col-md-6">
-					<label> User Name : <input type="text" class="form-control"
-						name="login" />
-					</label>
-				</div>
-				<div class="form-group col-md-6">
-					<label> Password: <input type="password"
-						class="form-control" name="password" />
-					</label>
+			<div class="form-group row">
+				<label for="login" class="col-sm-2 col-form-label">Login</label>
+				<div class="col-sm-10">
+					<input type="text" class="form-control" id="login" name="login"
+						placeholder="login">
 				</div>
 			</div>
-			<div class="form-row">
-				<input type="submit" class="btn btn-primary" value="Sign In" />
+			<div class="form-group row">
+				<label for="password" class="col-sm-2 col-form-label">Password</label>
+				<div class="col-sm-10">
+					<input type="password" class="form-control" id="password"
+						name="password" placeholder="password">
+				</div>
+			</div>
+			<div class="form-group row">
+				<div class="col-sm-2">RememberMe</div>
+				<div class="col-sm-10">
+					<div class="form-check">
+						<input class="form-check-input" type="checkbox" id="rememberMe">
+						<label class="form-check-label" for="rememberMe">
+							RememberMe </label>
+					</div>
+				</div>
+			</div>
+			<div class="form-group row">
+				<div class="col-sm-10">
+					<button type="submit" class="btn btn-primary">Sign in</button>
+				</div>
 			</div>
 		</form>
 	</div>
+
 
 
 </body>

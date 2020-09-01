@@ -49,6 +49,7 @@ public class Runner implements InitializingBean {
 		entity.setPassword("maxim");
 		entity.setLogin("maxim");
 		entity.setRole(Role.ADMIN);
+		entity.setActive(true);
 		repo.save(entity);
 
 	}
