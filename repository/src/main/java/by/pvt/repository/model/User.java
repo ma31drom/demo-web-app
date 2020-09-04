@@ -29,6 +29,10 @@ public class User {
 
 	private String email;
 	
+	private String filePath;
+	private String fileName;
+	private String mimeType;
+	
 	private boolean active;
 	
 	private String firstName;

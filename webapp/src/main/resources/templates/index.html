@@ -22,6 +22,30 @@
 		</div>
 	</div>
 
+	<br />
+	<br />
+
+	<section class="my-5" sec:authorize="isAuthenticated()">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-8 mx-auto">
+					<h2>Upload File Example</h2>
+					<form method="post"
+						th:action="@{/users/{userId}/files(userId=${user.id})}"
+						enctype="multipart/form-data">
+						<div class="form-group">
+							<input type="file" name="file" class="form-control-file">
+						</div>
+						<button type="submit" class="btn btn-primary">Upload File</button>
+					</form>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<img sec:authorize="isAuthenticated()" 
+	th:src="@{/users/{userId}/files(userId=${user.id})}" />
+
 	<th:block th:insert="fragments/scripts.html :: scripts" />
 	<script type="text/javascript">
 		$(function() {
