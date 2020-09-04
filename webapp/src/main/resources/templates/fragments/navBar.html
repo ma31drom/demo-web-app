@@ -30,17 +30,19 @@
 			<li class="nav-item"><a class="nav-link disabled" href="#">Disabled</a>
 			</li>
 		</ul>
-		<form class="form-inline my-2 my-lg-0">
-			Hello,<span th:text="${login} ?: 'Anonymous'" class="mr-3 ml-1"></span> <span
-				th:if="${login == null}"> <a class="btn btn-primary"
-				href="/login">Sign in!</a> <a class="btn btn-secondary"
-				href="/register">Register me!</a>
+		<div class="form-inline my-2 my-lg-0">
+			Hello, <span th:text="${login} ?: 'Anonymous'" class="mr-3 ml-1"></span>
+			<span sec:authorize="!isAuthenticated()"> <a
+				class="btn btn-primary" href="/login">Sign in!</a> <a
+				class="btn btn-secondary" href="/register">Register me!</a>
+			</span> <span sec:authorize="isAuthenticated()">
+
+
+				<form th:action="@{/logout}" method="POST">
+					<input class="btn btn-secondary" type="submit" value="Logout" />
+				</form> <!-- <a class="btn btn-secondary" href="/logout">Sign out!</a> -->
 			</span>
-			<span
-				th:if="${login != null}"> 
-				<a class="btn btn-secondary" href="/logout">Sign out!</a>
-			</span>
-		</form>
+		</div>
 	</div>
 </nav>
 

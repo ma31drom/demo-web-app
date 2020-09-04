@@ -6,35 +6,27 @@
 <body>
 	<th:block th:insert="fragments/navBar.html :: navbar" />
 
-	<span th:if="${login == null}"> <a href="/login">Sing in!</a> <a
-		href="/register">Register me!</a>
-	</span>
-
-	<form th:action="@{/date}" method="post">
-		<div class="row" style="padding-top: 100px">
-			<div class="col">
-				<input data-date-format="yyyy/mm/dd" id="datepicker" name="date">
+	<div class="container">
+		<div class="row">
+			<div class='col-sm-6'>
+				<div class="form-group">
+					<div class='input-group date' id='datetimepicker1'>
+						<input type='text' class="form-control" /> <span
+							class="input-group-addon"> <span
+							class="glyphicon glyphicon-calendar"></span>
+						</span>
+					</div>
+				</div>
 			</div>
-		</div>
-		<button type="submit" class="btn btn-primary">submit</button>
-	</form>
 
-	<script
-		src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-	<script
-		src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/js/bootstrap-datepicker.min.js"></script>
-	<script
-		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
-		integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
-		crossorigin="anonymous"></script>
+		</div>
+	</div>
+
+	<th:block th:insert="fragments/scripts.html :: scripts" />
 	<script type="text/javascript">
-		$('#datepicker').datepicker({
-			weekStart : 1,
-			daysOfWeekHighlighted : "6,0",
-			autoclose : true,
-			todayHighlight : true,
+		$(function() {
+			$('#datetimepicker1').datetimepicker();
 		});
-		$('#datepicker').datepicker("setDate", new Date());
 	</script>
 </body>
 </html>
