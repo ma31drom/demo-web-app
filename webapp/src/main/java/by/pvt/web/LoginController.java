@@ -21,14 +21,12 @@ public class LoginController {
 		} else {
 			return "redirect:/login";
 		}
-		throw new RuntimeException();
-		// return "redirect:/index";
+		return "redirect:/index";
 	}
 
 	@GetMapping
 	String loginPage(ModelMap model) {
-		throw new RuntimeException();
-		//return "login";
+		return "login";
 	}
 
 }
