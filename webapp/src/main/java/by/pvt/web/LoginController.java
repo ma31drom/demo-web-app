@@ -1,6 +1,5 @@
 package by.pvt.web;
 
-import org.springframework.context.annotation.Configuration;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
@@ -22,12 +21,14 @@ public class LoginController {
 		} else {
 			return "redirect:/login";
 		}
-		return "redirect:/index";
+		throw new RuntimeException();
+		// return "redirect:/index";
 	}
 
 	@GetMapping
 	String loginPage(ModelMap model) {
-		return "login";
+		throw new RuntimeException();
+		//return "login";
 	}
 
 }
