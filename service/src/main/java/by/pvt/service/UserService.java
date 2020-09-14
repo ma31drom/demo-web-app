@@ -2,6 +2,8 @@ package by.pvt.service;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+
 import by.pvt.repository.model.User;
 
 public interface UserService extends CrudService<User> {
@@ -12,5 +14,5 @@ public interface UserService extends CrudService<User> {
 
 	boolean checkLoginPresent(String login);
 	
-	List<User> getPage(Integer pageNum, Integer pageSize);
+	Page<User> getPage(Integer pageNum, Integer pageSize);
 }

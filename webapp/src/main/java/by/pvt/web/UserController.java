@@ -1,9 +1,11 @@
 package by.pvt.web;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -15,7 +17,7 @@ import by.pvt.service.UserService;
 @RequestMapping(path = "/users")
 public class UserController {
 
-	private static final Integer DEFAULT_PAGE_NUM = 1;
+	private static final Integer DEFAULT_PAGE_NUM = 0;
 	private static final Integer DEFAULT_PAGE_SIZE = 5;
 
 	@Autowired
@@ -27,9 +29,10 @@ public class UserController {
 		pageSize = pageSize == null ? DEFAULT_PAGE_SIZE : pageSize;
 		pageNumber = pageNumber == null ? DEFAULT_PAGE_NUM : pageNumber;
 
-		model.addAttribute("userList", userService.getPage(pageNumber, pageSize));
-
-		return "list";
+		Page<User> page = userService.getPage(pageNumber, pageSize);
+		model.addAttribute("userList", page);
+		model.addAttribute("pnum", pageNumber);
+		return "userlist";
 	}
 
 	@GetMapping(path = "/new")
@@ -50,4 +53,11 @@ public class UserController {
 		return "index";
 	}
 
+	@PostMapping(path = "/delete/{id}")
+	public String deleteUser(@PathVariable Integer id) {
+
+		userService.delete(userService.getById(id));
+
+		return "redirect:/users/list";
+	}
 }

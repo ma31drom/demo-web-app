@@ -1,0 +1,53 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+
+<th:block th:fragment="ulist">
+	<div class="container mt-4">
+		<div class="card">
+
+			<div class="card-block">
+				<table class="table">
+					<thead>
+						<tr>
+							<th scope="col">ID</th>
+							<th scope="col">First name</th>
+							<th scope="col">Last name</th>
+							<th scope="col">Email</th>
+							<th scope="col">Login</th>
+							<th scope="col">Role</th>
+						<tr>
+					</thead>
+					<tbody>
+						<tr th:each="userInfo : ${userList.content}">
+							<th th:text="${userInfo.id}" />
+							<td th:text="${userInfo.firstName}" />
+							<td th:text="${userInfo.lastName}" />
+							<td th:text="${userInfo.email}" />
+							<td th:text="${userInfo.login}" />
+							<td th:text="${userInfo.role}" />
+
+							<td><form method="post"
+									th:action="@{/users/delete/{id}(id=${userInfo.id})}">
+									<button type="submit" name="submit" class="btn btn-primary"
+										value="value">Delete user</button>
+								</form></td>
+
+						</tr>
+					</tbody>
+				</table>
+				<hr />
+
+				<ul class="nav nav-pills">
+					<li class="nav-item m-2"
+						th:each="i : ${#numbers.sequence(0, userList.getTotalPages()-1)}"><a
+						th:href="@{/users/list(pageNumber=${i})}" th:text="${i}"
+						class="nav-link" th:classappend="${pnum == i}?'active':''"></a></li>
+				</ul>
+			</div>
+
+		</div>
+
+
+	</div>
+</th:block>
+</html>
