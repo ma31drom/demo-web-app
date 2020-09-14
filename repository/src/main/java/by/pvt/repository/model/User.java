@@ -28,16 +28,19 @@ public class User {
 	private String password;
 
 	private String email;
-	
+
 	private String filePath;
 	private String fileName;
 	private String mimeType;
-	
+
 	private boolean active;
-	
+
 	private String firstName;
 	private String lastName;
 
 	private Role role;
 
+	public static User create() {
+		return new User();
+	}
 }

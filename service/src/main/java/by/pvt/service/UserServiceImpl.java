@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -32,5 +33,10 @@ public class UserServiceImpl extends CrudServiceJpaRepoImpl<User> implements Use
 	@Override
 	public boolean checkLoginPresent(String login) {
 		return getByLogin(login) != null;
+	}
+
+	@Override
+	public List<User> getPage(Integer pageNum, Integer pageSize) {
+		return repo.findAll(PageRequest.of(pageNum, pageSize)).getContent();
 	}
 }

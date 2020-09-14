@@ -26,4 +26,14 @@ public class IndexController {
 		return "index";
 	}
 
+	@GetMapping("/index")
+	String samePage(ModelMap model) {
+		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		if (principal instanceof User) {
+			String username = ((User) principal).getUsername();
+			model.addAttribute("login", username);
+			model.addAttribute("user", service.getByLogin(username));
+		}
+		return "index";
+	}
 }
