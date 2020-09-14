@@ -1,11 +1,11 @@
 package by.pvt.web;
 
-import java.io.ByteArrayInputStream;
 import java.io.IOException;
-import java.io.InputStream;
+import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -42,20 +42,19 @@ public class UserImageController {
 		return "redirect:/";
 	}
 
-	@GetMapping(path = "/users/{userId}/files", 
-			produces = MediaType.IMAGE_JPEG_VALUE)
+	@GetMapping(path = "/users/{userId}/files", produces = MediaType.IMAGE_JPEG_VALUE)
 	@ResponseBody
-	public byte[] getImg(@PathVariable Integer userId) {
+	public void getImg(@PathVariable Integer userId, HttpServletResponse response) {
 		User byId = service.getById(userId);
 		if (byId.getFilePath() == null) {
-			return new byte[0];
+			return;
 		}
 		String filePath = byId.getFilePath();
-		InputStream read = storageService.read(filePath);
+		response.setContentType(MediaType.IMAGE_JPEG_VALUE);
 		try {
-			return IOUtils.toByteArray(read);
+			IOUtils.copy(storageService.read(filePath), response.getOutputStream());
 		} catch (IOException e) {
-			return new byte[0];
+			response.setStatus(HttpStatus.NOT_FOUND.value());
 		}
 	}
 
