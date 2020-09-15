@@ -53,7 +53,7 @@ public class UserController {
 		return "index";
 	}
 
-	@PostMapping(path = "/delete/{id}")
+	@GetMapping(path = "/delete/{id}")
 	public String deleteUser(@PathVariable Integer id) {
 
 		userService.delete(userService.getById(id));

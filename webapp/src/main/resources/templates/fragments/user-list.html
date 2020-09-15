@@ -26,7 +26,7 @@
 							<td th:text="${userInfo.login}" />
 							<td th:text="${userInfo.role}" />
 
-							<td><form method="post"
+							<td><form method="get"
 									th:action="@{/users/delete/{id}(id=${userInfo.id})}">
 									<button type="submit" name="submit" class="btn btn-primary"
 										value="value">Delete user</button>
